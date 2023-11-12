@@ -1,9 +1,13 @@
 
+import Category from "./Category";
+import Slider from "./Slider";
+
 
 const HomePage = () => {
       return (
             <div>
-                  <h1>Hello I am from Home page</h1>
+                  <Slider></Slider>
+                  <Category></Category>
                   
             </div>
       );
