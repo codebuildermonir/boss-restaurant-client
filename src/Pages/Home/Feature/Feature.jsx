@@ -6,7 +6,7 @@ const Feature = () => {
       return (
             <div className=" feature bg-fixed my-20 ">
 
-                  <div className=" bg-[#151515] opacity-80" >
+                  <div className=" bg-black bg-opacity-50" >
 
                   <div className="pt-10 text-white  ">
                   <SectionTitle
@@ -42,3 +42,6 @@ const Feature = () => {
 };
 
 export default Feature;
+
+
+
