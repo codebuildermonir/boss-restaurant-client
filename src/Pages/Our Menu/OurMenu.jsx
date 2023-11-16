@@ -61,7 +61,7 @@ const OurMenu = () => {
                         {/* drinks items */}  
                        <MenuCategory
                         items={soup}
-                        title={`SALADS`}
+                        title={`soup`}
                         image={ soupImage}
                         ></MenuCategory>   
                   </div>

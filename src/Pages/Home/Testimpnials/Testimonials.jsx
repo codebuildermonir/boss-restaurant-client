@@ -12,7 +12,7 @@ import{BiSolidQuoteLeft} from 'react-icons/bi'
 const Testimonials = () => {
       const [reviews, setReviews]= useState([]);
       useEffect(()=>{
-            fetch('reviews.json')
+            fetch('http://localhost:5006/api/v1/reviews')
             .then(res=> res.json())
             .then(data=> setReviews(data))
       },[])

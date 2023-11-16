@@ -14,6 +14,8 @@ const MenuItem = ({ItemCart}) => {
                   <p className="text-[#BB8506]">${price}</p>
                   
             </div>
+
+            
       );
 };
 

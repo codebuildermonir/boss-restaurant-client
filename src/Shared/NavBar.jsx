@@ -39,11 +39,19 @@ const NavBar = () => {
           Our Menu
           </NavLink>
           </li>
-      <li className=" text-lg text-[#FFFFFF] list-none">
+          <li className=" text-lg text-[#FFFFFF] list-none">
           <NavLink to={'/OurShop'}className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? " text-[#F68923] underline  " : ""
           } >
           Our Shop
+          </NavLink>
+          </li>
+
+          <li className=" text-lg text-[#FFFFFF] list-none">
+          <NavLink to={'/LogIn'}className={({ isActive, isPending }) =>
+          isPending ? "pending" : isActive ? " text-[#F68923] underline  " : ""
+          } >
+          Log-In
           </NavLink>
           </li>
 

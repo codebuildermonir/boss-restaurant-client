@@ -2,14 +2,12 @@ import { useEffect, useState } from "react";
 
 const useMenu = () => {
 
-      const [ menu ,setMenu]= useState([]);
+      const [ menu, setMenu]= useState([]);
       const [loading,setLoading]= useState(true)
       useEffect(()=>{
-
-            fetch('menu.json')
+            fetch('http://localhost:5006/api/v1/restaurant')
             .then(res=> res.json())
             .then(data=>{
-                  //const popularItem=data.filter(item=>item.category === "popular");
                   setMenu(data)
                   setLoading(false)
             } )
