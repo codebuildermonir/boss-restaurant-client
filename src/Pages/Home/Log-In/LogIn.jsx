@@ -1,7 +1,9 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate,validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../../Provider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link,useLocation, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2'
 
 const LogIn = () => {
 
@@ -9,6 +11,16 @@ const LogIn = () => {
 
       const captchaRef= useRef(null);
       const[disable, setDisable]= useState(true)
+
+      const location= useLocation();
+      const navigate= useNavigate()
+      //console.log(navigate)
+
+      //console.log(location)
+      //const from = location.state?.from?.pathname || "/ ";
+
+      const locate = location.state?.from?.pathname || '/ ';
+      console.log(locate)
 
       useEffect(()=>{
 
@@ -20,13 +32,29 @@ const LogIn = () => {
             const from = e.target;
             const email = from.email.value;
             const password= from.password.value;
-            const logInfo = {email, password}
-            console.log(logInfo)
+            //const logInfo = {email, password}
+            //console.log(logInfo)
+          
 
             singIn(email,password)
             .then(result=>{
                   const user= result.user
                   console.log(user)
+                  
+                
+
+                  Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 2500
+                      });
+                      navigate(locate, { replace: true })
+
+                     
+
+                    
             })
             .then(error=>{
                   console.log(error)
@@ -49,9 +77,13 @@ const LogIn = () => {
               }
 
       }
-
      
       return (
+
+            <div>
+           <Helmet><title>Boos Restaurant|LogIn</title></Helmet>
+
+
             <div className="hero min-h-screen bg-base-200">
 
             <div className="hero-content flex-col md:flex-row">
@@ -100,10 +132,13 @@ const LogIn = () => {
             </div>
             </div>
             </div>
+
+            </div>
       );
 };
 
 export default LogIn;
+
 
 
 

@@ -17,8 +17,6 @@ const Testimonials = () => {
             .then(data=> setReviews(data))
       },[])
 
-      console.log(reviews)
-
 
       return (
             <section>

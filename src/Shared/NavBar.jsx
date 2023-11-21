@@ -1,8 +1,26 @@
 
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Provider/AuthProvider";
+import { FaCartPlus } from 'react-icons/fa6';
+import useCart from "../Hooks/useCart";
 
 const NavBar = () => {
+    const{user, logOut}=useContext(AuthContext)
+    const [cart]= useCart()
 
+   
+
+    const handleLogOut=()=>{
+        logOut()
+        .then(result=>{
+            const userLogOut= result.user;
+            console.log(userLogOut)
+        })
+        .then(error=>{
+            console.log(error)
+        })
+    }
     
 
       const navBar = <>
@@ -25,13 +43,14 @@ const NavBar = () => {
           </NavLink>
       </li>
 
-      <li className=" text-lg text-[#FFFFFF] list-none">
+        <li className=" text-lg text-[#FFFFFF] list-none">
           <NavLink to={'/Dashboard'}className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? " text-[#F68923] underline  " : ""
           } >
           Dashboard
           </NavLink>
           </li>
+
       <li className=" text-lg text-[#FFFFFF] list-none">
           <NavLink to={'/OurMenu'}className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? " text-[#F68923] underline  " : ""
@@ -39,21 +58,42 @@ const NavBar = () => {
           Our Menu
           </NavLink>
           </li>
+
           <li className=" text-lg text-[#FFFFFF] list-none">
-          <NavLink to={'/OurShop'}className={({ isActive, isPending }) =>
+          <NavLink to={'/OurShop/:category'}className={({ isActive, isPending }) =>
           isPending ? "pending" : isActive ? " text-[#F68923] underline  " : ""
           } >
           Our Shop
           </NavLink>
           </li>
 
-          <li className=" text-lg text-[#FFFFFF] list-none">
-          <NavLink to={'/LogIn'}className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? " text-[#F68923] underline  " : ""
-          } >
-          Log-In
-          </NavLink>
+          <li>
+
+            <NavLink to={'/dashboard/cart'}>
+            <button className="btn">
+            <FaCartPlus className="text-2xl"></FaCartPlus>
+            <div className="badge badge-secondary">+{cart.length}</div>
+            </button>
+            </NavLink>
+
           </li>
+
+          
+
+          {
+            user? <>  <button onClick={handleLogOut} className="btn btn-outline btn-secondary">Log-Out</button> </>
+            : 
+            <>
+
+            <li className=" text-lg text-[#FFFFFF] list-none">
+            <NavLink to={'/LogIn'}className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? " text-[#F68923] underline  " : ""
+            } >
+            Log-In
+            </NavLink>
+            </li>
+            </>
+          }
 
          
        
@@ -75,6 +115,7 @@ const NavBar = () => {
                    {navBar}
                    </ul>
                    </div>
+                   
                     <a className=" text-xl ml-20 text-white "> 
                     <h1 className="font-black text-3xl">BISTRO BOSS</h1>
                     <p className="text-2xl font-bold tracking-[8.12px] ">Restaurant</p>
@@ -96,4 +137,7 @@ const NavBar = () => {
 };
 
 export default NavBar;
+
+
+
 
